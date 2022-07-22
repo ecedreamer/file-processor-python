@@ -1,5 +1,5 @@
-# Batch Processor working with multiple types of Parser # 
+# File Processor working with multiple types of Parser # 
 ## To run the program ##
 ``` 
-$ python batch_processor.py LineParser
+$ python file_processor.py JsonParser
 ```
