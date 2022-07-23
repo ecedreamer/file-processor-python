@@ -2,7 +2,7 @@ import magic
 
 
 # data size default to 1 KB = 1024 Bytes
-def file_reader(file_obj, data_size=10):
+def file_reader(file_obj, data_size=1024*15):
     while True:
         data = file_obj.read(data_size)
         if not data:
@@ -35,6 +35,7 @@ def unpack_file():
     # file_path = "files/sample_file3"
     # file_path = "files/plain_data.txt"
     # file_path = "files/csv_data.csv"
+    file_path = "files/citylots.json"
     mime_type = mime.from_file(file_path)
     print("MIME TYPE   :::  ", mime_type)
     yield from SUPPORTED_MIME_TYPES[mime_type](file_path)

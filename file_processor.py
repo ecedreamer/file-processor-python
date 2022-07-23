@@ -1,4 +1,5 @@
 import sys
+import time
 from lib.unpacker import unpack_file
 from lib.utils import get_parser
 
@@ -9,7 +10,8 @@ def file_processor(parser_name):
         for data in unpack_file():
             parser.write(data)
             parsed_lines = list(parser)
-            parser.buffer = "" if parser.buffer.endswith("\n") else parsed_lines.pop()
+            parser.buffer = "" if parser.buffer.endswith(
+                "\n") else parsed_lines.pop()
             yield from parsed_lines
         if len(parser.buffer.splitlines()) == 1:
             yield parser.buffer
@@ -19,8 +21,7 @@ def file_processor(parser_name):
             yield from parser
     else:
         print("Invalid parser provided")
-            
-    
+
 
 def write_to_file(file, data):
     file.write(f"{data}\n")
@@ -37,4 +38,7 @@ def main():
 
 
 if __name__ == "__main__":
+    t1 = time.time()
     main()
+    t2 = time.time()
+    print("Total time taken:", t2-t1, "seconds")
