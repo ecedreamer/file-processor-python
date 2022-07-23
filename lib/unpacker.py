@@ -2,7 +2,7 @@ import magic
 
 
 # data size default to 1 KB = 1024 Bytes
-def file_reader(file_obj, data_size=1024):
+def file_reader(file_obj, data_size=10):
     while True:
         data = file_obj.read(data_size)
         if not data:

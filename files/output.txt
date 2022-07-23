@@ -1,0 +1,6 @@
+{'name': 'Dipak Niroula', 'address': 'Satdobato', 'age': 29}
+{'name': 'Sangit Niroula', 'address': 'Nakhipot', 'interests': {'primary': 'Coding', 'secondary': 'Teaching'}}
+{'name': 'Dipendra Niroula', 'address': 'Belbari'}
+{'name': 'Music Niroula', 'address': 'Biratnagar'}
+{'name': 'Music Dipak', 'mobile_number': {'ntc': '9849978896', 'ncell': '9823371327'}, 'address': 'Bhaisepati'}
+{'name': 'Music Dipak', 'mobile_number': ['9849978896', '9823371327'], 'address': 'Bhaisepati'}
