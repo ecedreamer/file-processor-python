@@ -29,10 +29,12 @@ SUPPORTED_MIME_TYPES = {
 }
 
 def unpack_file():
-        mime = magic.Magic(mime=True)
-        file_path = "files/sample_file1"
-        file_path = "files/sample_file2"
-        # file_path = "files/plain_data.txt"
-        # file_path = "files/csv_data.csv"
-        mime_type = mime.from_file(file_path)
-        yield from SUPPORTED_MIME_TYPES[mime_type](file_path)
+    mime = magic.Magic(mime=True)
+    file_path = "files/sample_file1"
+    # file_path = "files/sample_file2"
+    # file_path = "files/sample_file3"
+    # file_path = "files/plain_data.txt"
+    # file_path = "files/csv_data.csv"
+    mime_type = mime.from_file(file_path)
+    print("MIME TYPE   :::  ", mime_type)
+    yield from SUPPORTED_MIME_TYPES[mime_type](file_path)

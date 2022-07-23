@@ -4,21 +4,26 @@ import json
 def json_object_gen(parser):
     json_string = ""
     start = False
+    stack = []
     for c in parser.buffer:
         if c == "{":
             start = True
+            stack.append("{")
         if c == "\n":
             continue
         if start:
             json_string += c
         if c == "}":
-            start = False
+            stack.pop()
             try:
-                yield json.loads(json_string)
+                if not stack:
+                    start = False
+                    yield json.loads(json_string)
+                    json_string = ""
+
             except Exception as e:
                 print(f"EXCEPTION at Parser: {e}")
                 yield json_string
-            json_string = ""
 
     parser.buffer = json_string
 

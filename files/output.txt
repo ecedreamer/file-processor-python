@@ -1,5 +1,0 @@
-{'name': 'Dipak Niroula', 'address': 'Satdobato'}
-{'name': 'Sangit Niroula', 'address': 'Nakhipot'}
-{'name': 'Dipendra Niroula', 'address': 'Belbari'}
-{'name': 'Music Niroula', 'address': 'Biratnagar'}
-{'name': 'Music Dipak', 'address': 'Bhaisepati'}
