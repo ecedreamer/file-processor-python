@@ -1,4 +1,7 @@
 
+import json
+
+
 def line_gen(buffer):
     yield from buffer.splitlines()
 
@@ -12,7 +15,9 @@ class LineParser:
         self._from = _from
         
     def write(self, data):
-        self.buffer += data
+        encoded_data = self.encode(data)
+        decoded_data = self.decode(encoded_data)
+        self.buffer += decoded_data
         self.gen = line_gen(self.buffer)
     
     def __iter__(self):
@@ -23,3 +28,8 @@ class LineParser:
             self.buffer = ""
         return next(self.gen)
     
+    def encode(self, data):
+        return data.encode()
+
+    def decode(self, data):
+        return data.decode()
