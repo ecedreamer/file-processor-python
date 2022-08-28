@@ -28,8 +28,6 @@ def json_object_gen(parser):
     parser.buffer = json_string
 
 
-
-
 class JsonParser:
     def __init__(self, _from=None) -> None:
         self.buffer = ""
@@ -37,16 +35,15 @@ class JsonParser:
         # to tell the batch processor and not breaking existing thing
         self.json_parser = True
         self._from = _from
-        
+
     def write(self, data):
         self.buffer += data
         self.gen = json_object_gen(self)
-    
+
     def __iter__(self):
         return self
-    
+
     def __next__(self):
         if self._from != "file_processor":
             self.buffer = ""
         return next(self.gen)
-    
