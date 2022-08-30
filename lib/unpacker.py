@@ -4,12 +4,12 @@ import magic
 
 
 # data size default to 1 KB = 1024 Bytes
-def file_reader(file_obj, data_size=1024 * 15 * 100):
+def file_reader(file_obj, data_size=1024 * 15):
     while True:
-        data = file_obj.read(data_size)
-        if not data:
+        if data := file_obj.read(data_size):
+            yield data
+        else:
             break
-        yield data
 
 
 def describe_json(file_path):
@@ -49,15 +49,8 @@ SUPPORTED_MIME_TYPES = {
 }
 
 
-def unpack_file():
+def unpack_file(file_path):
     mime = magic.Magic(mime=True)
-    file_path = "files/sample_file1"
-    # file_path = "files/sample_file2.json"
-    # file_path = "files/sample_file3"
-    # file_path = "files/plain_data.txt"
-    # file_path = "files/csv_data.csv"
-    file_path = "files/citylots.jsonl"
-    file_path = "files/sample_file1.json"
     mime_type = mime.from_file(file_path)
     print("MIME TYPE   :::  ", mime_type)
     yield from SUPPORTED_MIME_TYPES[mime_type](file_path)
