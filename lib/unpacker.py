@@ -9,6 +9,7 @@ def file_reader(file_obj, data_size=1024 * 15):
         if data := file_obj.read(data_size):
             yield data
         else:
+            yield "\n"
             break
 
 

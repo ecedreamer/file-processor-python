@@ -2,8 +2,17 @@
 import json
 
 
-def line_gen(buffer):
-    yield from buffer.splitlines()
+def line_gen(parser):
+    parsed_lines = parser.buffer.splitlines()
+    for data in parsed_lines[:-1]:
+        if data:
+            yield data
+    if parser.buffer.endswith("\n"):
+        parser.buffer = ""
+        if parsed_lines[-1]:
+            yield parsed_lines[-1]
+    else:
+        parser.buffer = parsed_lines[-1]
 
 
 class LineParser:
@@ -18,7 +27,7 @@ class LineParser:
         encoded_data = self.encode(data)
         decoded_data = self.decode(encoded_data)
         self.buffer += decoded_data
-        self.gen = line_gen(self.buffer)
+        self.gen = line_gen(self)
     
     def __iter__(self):
         return self

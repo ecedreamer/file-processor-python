@@ -6,22 +6,25 @@ from lib.utils import get_parser
 
 def file_processor(parser_name, file_info):
     parser = get_parser(parser_name)(_from="file_processor")
-    if hasattr(parser, "line_parser") and parser.line_parser:
-        for data in unpack_file(file_path=file_info.get("file_name")):
-            parser.write(data)
-            parsed_lines = list(parser)
-            parser.buffer = "" if parser.buffer.endswith(
-                "\n") else parsed_lines.pop()
-            yield from parsed_lines
-        if len(parser.buffer.splitlines()) == 1:
-            yield parser.buffer
-    elif hasattr(parser, "json_parser") and parser.json_parser:
-        for data in unpack_file(file_path=file_info.get("file_name")):
-            parser.array_key = file_info.get("array_key")
-            parser.write(data)
-            yield from parser
-    else:
-        print("Invalid parser provided")
+    # if hasattr(parser, "line_parser") and parser.line_parser:
+    #     for data in unpack_file(file_path=file_info.get("file_name")):
+    #         parser.write(data)
+    #         parsed_lines = list(parser)
+    #         parser.buffer = "" if parser.buffer.endswith("\n") else parsed_lines.pop()
+    #         yield from parsed_lines
+    #
+    # elif hasattr(parser, "json_parser") and parser.json_parser:
+    #     parser.array_key = file_info.get("array_key")
+    #     for data in unpack_file(file_path=file_info.get("file_name")):
+    #         parser.write(data)
+    #         yield from parser
+    # else:
+    #     print("Invalid parser provided")
+    if file_info.get("array_key"):
+        parser.array_key = file_info.get("array_key")
+    for data in unpack_file(file_path=file_info.get("file_name")):
+        parser.write(data)
+        yield from parser
 
 
 def write_to_file(file, data):
