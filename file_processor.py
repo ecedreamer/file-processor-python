@@ -31,7 +31,7 @@ def write_to_file(file, data):
 def main():
     parser_name = sys.argv[1] or "LineParser"
     file_info = {
-        "file_name": "files/sample_file2",
+        "file_name": "files/sample_json_file.json",
         "array_key": None
     }
     count = 0

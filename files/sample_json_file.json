@@ -1,7 +1,7 @@
 [{
   "name": "Dipak Niroula",
   "profession": "Engineer",
-  "specialization": "Software Engineer",
+  "specialization": "Software {Engineer}",
   "skills": [
     {
       "skill": "Python Programming Language",

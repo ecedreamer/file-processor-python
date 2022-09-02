@@ -6,16 +6,21 @@ def json_object_gen(parser):
     json_string = ""
     start = False
     stack = []
-
+    quote_present = False
     for c in parser.buffer:
-        if c == "{":
+        if c == '"' and not quote_present:
+            quote_present = True
+        elif c == '"' and quote_present:
+            quote_present = False
+
+        if c == "{" and not quote_present:
             start = True
             stack.append("{")
         if c == "\n":
             continue
         if start:
             json_string += c
-        if c == "}":
+        if c == "}" and not quote_present:
             try:
                 stack.pop()
                 if not stack:
